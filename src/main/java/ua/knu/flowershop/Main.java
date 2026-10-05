@@ -2,24 +2,22 @@ package ua.knu.flowershop;
 
 import ua.knu.flowershop.model.*;
 import ua.knu.flowershop.service.BouquetService;
+import ua.knu.flowershop.service.FileInitializer;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        
-        Flower rose1 = new Rose(150.0, 60.5, Freshness.FRESH, true);
-        Flower rose2 = new Rose(120.0, 50.0, Freshness.NORMAL, false);
-        Flower tulip = new Tulip(80.0, 40.0, Freshness.STALE);
-        
+        Bouquet bouquet = new Bouquet();
+
+        List<Flower> loadedFlowers = FileInitializer.loadFlowers("flowers.txt");
+        for (Flower flower : loadedFlowers) {
+            bouquet.addFlower(flower);
+        }
+
         Accessory ribbon = new Ribbon(30.0);
         Accessory wrapper = new Wrapper(50.0);
-
-        Bouquet bouquet = new Bouquet();
-        bouquet.addFlower(rose1);
-        bouquet.addFlower(rose2);
-        bouquet.addFlower(tulip);
         bouquet.addAccessory(ribbon);
         bouquet.addAccessory(wrapper);
 
